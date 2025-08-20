@@ -1,5 +1,7 @@
 import "./page.css";
 
+import ButtomCustom from "@/components/Button";
+
 export default function Home() {
 
   // declaracion de una constante ( recuerden que las variables de tipo const no se permiten volvel a asignar otro valor de nuevo )
@@ -56,6 +58,8 @@ export default function Home() {
           ))
         }
       </div>
+      <ButtomCustom name="Hola soy un boton" />
+      <ButtomCustom></ButtomCustom>
     </div>
   );
 }
