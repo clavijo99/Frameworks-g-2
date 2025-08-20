@@ -1,3 +1,4 @@
+import AnimalCard from "@/components/AnimalCard";
 import "./page.css";
 
 import ButtomCustom from "@/components/Button";
@@ -13,11 +14,13 @@ export default function Home() {
   // declaracion de un arreglo de objetos ( recueda que los areglos son tipo clave : valor, ejemplo "nombre": "camilo" )
   const animales = [
     {
+      "icon": "",
       "name": "pepe",
       "raza": "golden",
       "tipo": "perro"
     },
     {
+      "icon": "",
       "name": "lulu",
       "raza": "angora",
       "tipo": "gato"
@@ -50,16 +53,12 @@ export default function Home() {
         {/* mismo mecanismo que al listar un array unicamente que ahora el elemento va a ser un objeto y podremos acceder a sus propiedades elemento.name..... */}
         {
           animales.map((animal, index) => (
-            <div>
-              <p>nombre  {animal.name} </p>
-              <p>raza animal.raza</p>
-              <p>tipo  animal.tipo </p>
-            </div>
+            <  AnimalCard key={index} name={animal.name} raza={animal.raza} tipo={animal.tipo} />
           ))
         }
       </div>
       <ButtomCustom name="Hola soy un boton" />
-      <ButtomCustom></ButtomCustom>
+      <ButtomCustom name=''></ButtomCustom>
     </div>
   );
 }
