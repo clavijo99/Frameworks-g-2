@@ -1,7 +1,14 @@
+import Image from "next/image"
+
+
+const banner = '/banner.webp'
+
+
+
 export default function Header(){
     return (
-        <div>
-            <h2>Header</h2>
-        </div>
+        <header className="" >
+            <Image src={banner}  fill />
+        </header>
     )
 }
