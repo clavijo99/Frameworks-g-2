@@ -18,9 +18,9 @@ export default function Header(){
                 <Link href='/' className="mr-10" > Logo de mi Tienda </Link>
                 <div>
                     <Link href='/' >Home</Link>
-                    <Link>Servicios</Link>
-                    <Link>Contacto</Link>
-                    <Link>Informacion</Link>
+                    <Link href='/services'>Servicios</Link>
+                    <Link href='/contact' >Contacto</Link>
+                    <Link href='/about' >Informacion</Link>
                 </div>
             </nav>
 
