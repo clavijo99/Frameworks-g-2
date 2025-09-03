@@ -25,8 +25,8 @@ export default function Home() {
 
       <div className="flex flex-col">
         <input className="bg-pink-500" type="text" name="email" value={email} onChange={ (e) => setEmail(e.target.value) } />
-        <input className="bg-pink-700" type="password" name="" id="" value={password} />
-        <button>Mostrar datos</button>
+        <input className="bg-pink-700" type="password" name="" id="" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <button onClick={ () => alert("Nombre: "+ email+ "pasword" + password) }>Mostrar datos</button>
       </div>
     </div>
   );
