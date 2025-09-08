@@ -1,7 +1,8 @@
 'use client'
 
 import Image from "next/image";
-import { useState } from 'react'
+import { use, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
 
@@ -10,6 +11,17 @@ export default function Home() {
 
   const [ email, setEmail ] = useState("")
   const [password, setPassword] = useState()
+
+  const router = useRouter()
+
+  function ingresar(){
+     if( email === 'bclavijogomez@gmail.com' && password === 'admin123' ){
+      alert("ingreso exitoso")
+      router.push('/dasboard')
+     }else{
+      alert("La credeneciales son incorrectas")
+     }
+  }
 
 
   return (
@@ -20,13 +32,10 @@ export default function Home() {
       <button onClick={() => setActive(!active)}>Active</button>
       { active && <div className="w-20 h-20 bg-red-700" ></div> }
 
-
-
-
       <div className="flex flex-col">
         <input className="bg-pink-500" type="text" name="email" value={email} onChange={ (e) => setEmail(e.target.value) } />
         <input className="bg-pink-700" type="password" name="" id="" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button onClick={ () => alert("Nombre: "+ email+ "pasword" + password) }>Mostrar datos</button>
+        <button onClick={ ingresar } >Mostrar datos</button>
       </div>
     </div>
   );
