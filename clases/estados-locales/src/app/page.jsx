@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { use, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import InputCustom from "@/components/InputCustom";
 
 export default function Home() {
 
@@ -36,6 +37,11 @@ export default function Home() {
         <input className="bg-pink-500" type="text" name="email" value={email} onChange={ (e) => setEmail(e.target.value) } />
         <input className="bg-pink-700" type="password" name="" id="" value={password} onChange={(e) => setPassword(e.target.value)} />
         <button onClick={ ingresar } >Mostrar datos</button>
+      </div>
+
+      <div>
+        <InputCustom isPassword={true} />
+        <InputCustom isPassword={false} />
       </div>
     </div>
   );
