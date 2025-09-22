@@ -16,7 +16,7 @@ const users = [
 ];
 
 // http:://localhost:3000/api/{carpeta "users"}
- // GET, POST , DELETE, PATCH, PUT
+// GET, POST , DELETE, PATCH, PUT
 export async function GET() {
 
     // INSTANCE de la clase Response ( body , cabezeras )
@@ -37,19 +37,24 @@ export async function POST(req) {
     // para obtener los datos del body debemos procesar el req ya que es async
     const body = await req.json();
 
-    console.log(body)
+    
+    const { nombre, apellido, email, telefono, contraseña } = body;
 
-    users.push({
-        "nombre": body.nombre,
-        "apellido": body.apellido
-    });
+    const user = {
+        nombre, apellido, email, telefono, contraseña
+    };
+
+    users.push(user)
 
     return new Response(
-        'Informacion recivida', {
-            status: 201,
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        JSON.stringify({
+            "message": "Usuario creado",
+            "usuario": user
+        }), {
+        status: 201,
+        headers: {
+            'Content-Type': 'application/json'
         }
+    }
     )
 }
