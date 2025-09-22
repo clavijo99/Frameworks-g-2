@@ -30,3 +30,26 @@ export async function GET() {
         }
     });
 }
+
+
+// agregue el atributo req --> tienen toda la informacion de mi peticion
+export async function POST(req) {
+    // para obtener los datos del body debemos procesar el req ya que es async
+    const body = await req.json();
+
+    console.log(body)
+
+    users.push({
+        "nombre": body.nombre,
+        "apellido": body.apellido
+    });
+
+    return new Response(
+        'Informacion recivida', {
+            status: 201,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    )
+}
