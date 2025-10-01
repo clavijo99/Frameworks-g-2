@@ -22,6 +22,13 @@ export async function POST(req) {
             const isPasswordValidate = await bcrypt.compare(password, users.password)
 
             if(isPasswordValidate){
+                const { accessToken, refreshToken } = generateToken(users)
+
+                return Response.json({
+                    "menssage": "Login exitoso",
+                    accessToken,
+                    refreshToken
+                })
 
             }
 
@@ -56,4 +63,6 @@ export function generateToken(user) {
         // configuraciones
         {expiresIn: '1h'}
     )
+
+    return { accessToken, refreshToken }
 }
