@@ -66,3 +66,8 @@ export function generateToken(user) {
 
     return { accessToken, refreshToken }
 }
+
+
+export function verifyToken(token){
+    return jwt.verify(token, SECRET_KEY_ACCESS_TOKEN)
+}

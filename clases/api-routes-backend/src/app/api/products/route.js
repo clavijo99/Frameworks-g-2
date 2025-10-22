@@ -1,4 +1,5 @@
 import pool from '@/lib/db';
+import { verifyToken } from '../auth/login/route';
 
 export async function GET(req) {
     try {
@@ -19,7 +20,8 @@ export async function POST(req) {
     try {
 
         try {
-
+            const token = req.headers.get('Authorization').split(" ")[1]
+            verifyToken(token)
         } catch (error) {
             console.log(error)
             return new Response('Error de autenticacion', { status: 401 })
