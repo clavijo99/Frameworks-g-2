@@ -21,12 +21,13 @@ export const useLogin = () => {
                 body: JSON.stringify({email, password})
             })
 
-            if(!response.ok) throw new Error('Credenciales erroneas')
-
+            if(response.status != 200){
+                return false;
+            }
             const dataJson = await response.json();
             setData(dataJson)
 
-            return dataJson;
+            return true;
         } catch(err){
 
         } finally {

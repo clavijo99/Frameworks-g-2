@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
 import { verifyToken } from './app/api/auth/login/route'
+import { routesPublics } from '@/lib/routesPublics'
 
 
 export function middleware(request) {
-    const routesPublics = ['/api/auth/login', '/api/auth/register']
-
 
     if (routesPublics.some(route => request.nextUrl.pathname.startsWith(route))) {
         return NextResponse.next()
@@ -30,3 +29,5 @@ export const config = {
     matcher: ['/api/:path*'],
     runtime: 'nodejs'
 }
+
+

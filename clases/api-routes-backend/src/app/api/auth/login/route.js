@@ -8,20 +8,20 @@ const SECRET_KEY_REFRESH = 'MY-KEY-REFRESH-T'
 
 
 export async function POST(req) {
-    
-    try{
+
+    try {
         const { email, password } = await req.json();
 
         const verifyUser = await pool.query(
             "SELECT * FROM users WHERE email = $1", [email]
         )
 
-        if( verifyUser.rows.length  > 0){
+        if (verifyUser.rows.length > 0) {
             const users = verifyUser.rows[0];
 
             const isPasswordValidate = await bcrypt.compare(password, users.password)
 
-            if(isPasswordValidate){
+            if (isPasswordValidate) {
                 const { accessToken, refreshToken } = generateToken(users)
 
                 return Response.json({
@@ -32,11 +32,13 @@ export async function POST(req) {
 
             }
 
-            return Response.json({message: "Las credenciales son incorrectas"})
+            return Response.json({
+                message: "Las credenciales son incorrectas",
+            }, {status: 200})
 
         }
 
-        return Response.json({message: "El email no existe"})
+        return Response.json({ message: "El email no existe", "status": 404 }, { status: 404 })
 
     } catch (error) {
         console.log(error)
@@ -48,26 +50,26 @@ export async function POST(req) {
 export function generateToken(user) {
     const accessToken = jwt.sign(
         // informacion del usuario
-        {"id": user.id, "name": user.name, "email": user.email},
+        { "id": user.id, "name": user.name, "email": user.email },
         // llave secreta
         SECRET_KEY_ACCESS_TOKEN,
         // configuraciones
-        {expiresIn: '30M'}
+        { expiresIn: '30M' }
     )
 
-        const refreshToken = jwt.sign(
+    const refreshToken = jwt.sign(
         // informacion del usuario
-        {"id": user.id, "name": user.name, "email": user.email},
+        { "id": user.id, "name": user.name, "email": user.email },
         // llave secreta
         SECRET_KEY_REFRESH,
         // configuraciones
-        {expiresIn: '1h'}
+        { expiresIn: '1h' }
     )
 
     return { accessToken, refreshToken }
 }
 
 
-export function verifyToken(token){
+export function verifyToken(token) {
     return jwt.verify(token, SECRET_KEY_ACCESS_TOKEN)
 }
