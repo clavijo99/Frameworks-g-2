@@ -14,6 +14,7 @@ export default function Home() {
     try{
       const response = await login(email, password);
       console.log(response)
+      console.log({data})
     } catch(err){
       console.log(err)
     }

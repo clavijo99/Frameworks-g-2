@@ -1,5 +1,6 @@
 'use client'
 
+import { apiFetch } from '@/lib/apiClient'
 import {  useState } from 'react'
 
 export const useLogin = () => {
@@ -13,11 +14,8 @@ export const useLogin = () => {
             setloading(true)
             setError(null)
 
-            const response = await fetch('/api/auth/login', {
+            const response = await apiFetch('/api/auth/login', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify({email, password})
             })
 
